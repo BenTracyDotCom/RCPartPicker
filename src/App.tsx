@@ -3,7 +3,7 @@ import React from 'react';
 const App = (props:Object) => {
 
   return (
-    <div>
+    <div className="text-blue-600">
       App
     </div>
   )
