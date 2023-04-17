@@ -1,2 +1,0 @@
-# RCPartPicker
-RC Part Picker
