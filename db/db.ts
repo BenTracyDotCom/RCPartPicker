@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import * as mongoose from 'mongoose'
 
 const userSchema = new mongoose.Schema({
   username: String,
@@ -7,7 +7,6 @@ const userSchema = new mongoose.Schema({
     password: String,
     salt: String
   },
-  builds: Array,
   isLoggedIn: Boolean
 })
 
@@ -32,9 +31,11 @@ const buildSchema = new mongoose.Schema({
   components: Array
 })
 
-module.exports = {
+const db = {
   User: mongoose.model('User', userSchema),
   Part: mongoose.model('Part', partSchema),
   Build: mongoose.model('Build', buildSchema)
 
 }
+
+export default db

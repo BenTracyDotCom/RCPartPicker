@@ -1,5 +1,5 @@
-require('./db')
-require('password-salt-and-hash').saltHash
+import db from './db';
+import saltHash from 'password-salt-and-hash'
 
 const model = {
   getUser: (user:{
@@ -46,7 +46,11 @@ const model = {
     return db.Build.find({
       owner: username
     })
-  }
+  },
+  validateUser: (userInfo: {
+    email: String, password: String}) => {
+
+    }
 }
 
-module.exports = model
+export default model

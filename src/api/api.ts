@@ -1,7 +1,8 @@
 import axios from 'axios'
-const controllers = require('../../db/controllers')
+const model =require('../../db/models')
 
 export default {
-  addPart: controllers.addPart,
-  getBuilds: controllers.getBuilds
+  addPart: model.addPart,
+  getBuilds: model.getBuilds,
+  validateUser: model.validateUser
 }

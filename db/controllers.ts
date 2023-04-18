@@ -1,4 +1,4 @@
-require('./models')
+import model from './models';
 
 const controllers = {
 
@@ -21,4 +21,4 @@ const controllers = {
 
 }
 
-module.exports = controllers;
+export default controllers;
