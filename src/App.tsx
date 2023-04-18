@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react'
+import './App.css'
 
-const App = (props:Object) => {
+
+function App() {
+
 
   return (
-    <div>
-      App
+    <div className="App">
+      <h1>RC Part Picker</h1>
     </div>
   )
 }
