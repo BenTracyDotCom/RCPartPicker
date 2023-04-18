@@ -18,15 +18,9 @@ const model = {
     password: String,
     builds: Object[],
   }) => {
-    db.User.findOne({
+    return db.User.findOne({
       email: user.email
     })
-    .catch(() => {
-      const newUser = new db.User({
-        username: user.username
-      })
-    })
-    .then(data => console.log(data))
   },
   addPart: (part:{
     name: String,
