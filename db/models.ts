@@ -41,6 +41,11 @@ const model = {
       prices: part.prices
     })
     return newPart.save()
+  },
+  getBuilds: (username: String) => {
+    return db.Build.find({
+      owner: username
+    })
   }
 }
 
