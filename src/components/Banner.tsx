@@ -3,9 +3,8 @@ import React from 'react';
 const Banner = (props:{ user: String, setBuilds: Function, setUser: Function }) => {
 
   const handleLogin = () => {
-    console.log(props.user, 'user', !!props.user)
     if(!props.user){
-      const modalCheck = document?.getElementById('my-modal') as HTMLInputElement;
+      const modalCheck = document!.getElementById('login-modal') as HTMLInputElement;
       modalCheck.checked = true;
     } else {
       props.setBuilds([]);
@@ -13,11 +12,17 @@ const Banner = (props:{ user: String, setBuilds: Function, setUser: Function }) 
     }
   }
 
+  const handleRegister = () => {
+    const registerCheck = document!.getElementById('register-modal') as HTMLInputElement;
+    registerCheck.checked = true;
+  }
+
   return (
     <div>
       <div>Banner</div>
       <div>{props.user}</div>
       <div onClick={handleLogin}>{!!props.user ? 'logout' : 'login'}</div>
+      {!props.user && <div onClick={handleRegister}>register</div>}
     </div>
   )
 }
