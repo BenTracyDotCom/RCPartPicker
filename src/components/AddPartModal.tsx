@@ -25,6 +25,10 @@ const AddPartModal = (props: Object) => {
     console.log('new type new type')
   }
 
+  const handlePrices = () => {
+
+  }
+
   const handleData = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, data: e.currentTarget.value })
   }
