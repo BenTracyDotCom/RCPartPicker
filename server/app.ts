@@ -1,6 +1,6 @@
-import * as express from 'express';
-import * as cookieParser from 'cookie-parser';
-import router from './routes';
+import express from 'express';
+import cookieParser from 'cookie-parser';
+import router from './routes.js';
 
 const app = express();
 

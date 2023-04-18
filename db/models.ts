@@ -1,5 +1,5 @@
-import db from './db';
-import saltHash from 'password-salt-and-hash'
+import db from './db.js';
+//import saltHash from 'password-salt-and-hash'
 
 const model = {
   getUser: (user:{
