@@ -6,3 +6,5 @@ const Banner = (props:Object) => {
     <div>Banner</div>
   )
 }
+
+export default Banner
