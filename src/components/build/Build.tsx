@@ -18,6 +18,11 @@ const Build = (props:{build: {name: String, owner: String, components: { name: S
     components: []
   })
 
+  const [stillNeeds, setStillNeeds] = useState([
+    'airframe', 'esc', 'transmitter', 'propeller', 'motor'])
+
+  const [complete, setComplete] = useState(false)
+
 
   return (
     <div>
@@ -26,9 +31,12 @@ const Build = (props:{build: {name: String, owner: String, components: { name: S
         <div></div>
       </div>
 
-      <PartList build={props.build}/>
+      <PartList build={props.build} stillNeeds={stillNeeds} setStillNeeds={setStillNeeds}/>
+      {!complete && <div>{`Your Build Still Needs: ${stillNeeds.join(', ')}`}</div>}
     </div>
   )
 }
+
+
 
 export default Build

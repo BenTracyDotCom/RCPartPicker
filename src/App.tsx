@@ -6,7 +6,7 @@ import RegisterModal from './components/RegisterModal'
 import AddPartModal from './components/AddPartModal'
 import Build from './components/build/Build.jsx'
 import Homepage from './components/homepage/Homepage.jsx'
-import Search from './components/search/Search.jsx'
+import SearchModal from './components/search/SearchModal.jsx'
 
 function App() {
 
@@ -19,12 +19,12 @@ function App() {
     <div className="App">
       <h1 className="text-red-600">RC Part Picker</h1>
       <Banner user={user} setUser={setUser} setBuilds={setBuilds} builds={builds} setBuild={setBuild} setPage={setPage}/>
+      <SearchModal />
       <AddPartModal />
       <LoginModal setUser={setUser} setBuilds={setBuilds}/>
       <RegisterModal />
       {page === 'home' && <Homepage />}
       {page === 'build' && <Build build={build} user={user}/>}
-      {page === 'search' && <Search />}
 
     </div>
   )
