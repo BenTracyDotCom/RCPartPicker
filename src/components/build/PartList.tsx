@@ -2,7 +2,7 @@ import React from 'react';
 import PartTile from './PartTile.jsx'
 import AddPartTile from './AddPartTile.jsx'
 
-const PartList = (props:{build: {name: String, owner: String, components: { name: String, type: String, data: Object, photoUrl: String, prices:{ host: String, url: string, price: string }[]}[]}, stillNeeds: String[], setStillNeeds: Function, setBuild: Function }) => {
+const PartList = (props:{build: {name: String, owner: String, components: { name: String, type: String, data: Object, photoUrl: String, prices:{ host: string, url: string, price: string }[]}[]}, stillNeeds: String[], setStillNeeds: Function, setBuild: Function }) => {
 
   return (
     <div>

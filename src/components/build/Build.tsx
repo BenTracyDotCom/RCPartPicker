@@ -6,7 +6,7 @@ const Build = (props:{build: {name: String, owner: String, components: { name: S
   data: Object;
   photoUrl: String;
   prices: {
-      host: String;
+      host: string;
       url: string;
       price: string;
     }[]
@@ -18,6 +18,8 @@ const Build = (props:{build: {name: String, owner: String, components: { name: S
     components: []
   })
 
+  const [runningTotal, setRunningTotal] = useState(0)
+
   const [stillNeeds, setStillNeeds] = useState([
     'airframe', 'esc', 'transmitter', 'propeller', 'motor'])
 
@@ -26,16 +28,24 @@ const Build = (props:{build: {name: String, owner: String, components: { name: S
   useEffect(() => {
     let stillNeedsCopy = stillNeeds.slice(0);
     if(props.build.components.length > 0){
+      const newTotal = props.build.components.reduce((memo, item) => {return memo + parseFloat(item.prices.sort((a, b) => {
+        if (parseFloat(a.price) < parseFloat(b.price)) {
+          return -1
+        }
+        if (parseFloat(a.price) > parseFloat(b.price)) {
+          return 1
+        }
+        return 0
+      })[0].price)}, 0)
+      setRunningTotal(newTotal)
       props.build.components.forEach(component => {
         if(stillNeeds.includes(component.type)){
           stillNeedsCopy.splice(stillNeedsCopy.indexOf(component.type), 1);
           setStillNeeds(stillNeedsCopy)
-        } else {
-          setStillNeeds([
-            'airframe', 'esc', 'transmitter', 'propeller', 'motor']);
-            props.setBuild(props.build)
         }
       })
+    } else {
+      setRunningTotal(0)
     }
   }, [props.build])
 
@@ -47,6 +57,7 @@ const Build = (props:{build: {name: String, owner: String, components: { name: S
       </div>
 
       <PartList build={props.build} stillNeeds={stillNeeds} setStillNeeds={setStillNeeds} setBuild={props.setBuild}/>
+      <div>{`Running Total: $${runningTotal.toFixed(2)}`}</div>
       {!complete && <div>{`Your Build Still Needs: ${stillNeeds.join(', ')}`}</div>}
     </div>
   )

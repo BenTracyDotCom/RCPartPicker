@@ -12,7 +12,7 @@ function App() {
 
   const [user, setUser] = useState("")
   const [builds, setBuilds] = useState([])
-  const [build, setBuild] = useState({name: '', owner: '', components: [] })
+  const [build, setBuild] = useState({name: '', owner: '', components: [{name:'', type: '', data: {}, photoUrl: '', prices: [{host: '', url: '', price: ''}]}] })
   const [page, setPage] = useState('home')
 
   return (
