@@ -6,10 +6,11 @@ import path from 'path'
 export default defineConfig({
   server: {
     proxy: {
-      '/api' : {
-        target: path.join(__dirname, '/api:3000'),
+      "/api" : {
+        target: 'http://localhost:3000',
         changeOrigin: true,
-        secure: false
+        secure: false,
+        rewrite: ( path ) => path.replace('', '')
       }
     }
   },

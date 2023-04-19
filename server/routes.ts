@@ -6,4 +6,6 @@ router.post('/register', db.controllers.register);
 
 router.post('/parts', db.controllers.addPart);
 
+router.post('/api/users', db.controllers.validateUser);
+
 export default router

@@ -1,12 +1,11 @@
 import axios from 'axios';
-import path from 'path';
 
-export default {
+const api = {
   addPart: (formData: Object) => {
     let payload = formData;
     let options = {
       method: 'POST',
-      url: path.join(__dirname, '/api/parts'),
+      url: window.location + 'api/parts',
       data: payload
     }
     return axios(options)
@@ -14,7 +13,7 @@ export default {
   getBuilds: (username: String) => {
     let options = {
       method: 'GET',
-      url: path.join(__dirname, `/api/builds/${username}`)
+      url: window.location + `api/builds/${username}`
     }
     return axios(options)
   },
@@ -22,9 +21,11 @@ export default {
     let payload = userInfo
     let options = {
       method: 'POST',
-      url: path.join(__dirname, `/api/users`),
+      url: window.location + `api/users`,
       data: payload
     }
     return axios(options)
   }
 }
+
+export default api

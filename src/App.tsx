@@ -9,14 +9,15 @@ function App() {
 
   const [user, setUser] = useState("admin")
   const [builds, setBuilds] = useState([])
+  const [build, setBuild] = useState('')
 
   return (
     <div className="App">
       <h1 className="text-red-600">RC Part Picker</h1>
+      <Banner user={user} setUser={setUser} setBuilds={setBuilds} builds={builds} setBuild={setBuild}/>
       <AddPartModal />
-      <LoginModal setUser={setUser}/>
+      <LoginModal setUser={setUser} setBuilds={setBuilds}/>
       <RegisterModal />
-      <Banner user={user} setUser={setUser} setBuilds={setBuilds} />
 
     </div>
   )

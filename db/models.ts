@@ -47,9 +47,11 @@ const model = {
       owner: username
     })
   },
-  validateUser: (userInfo: {
+  validateUser: async (userInfo: {
     email: String, password: String}) => {
-
+      return db.User.findOne({
+        email: userInfo!.email!
+      })
     }
 }
 
