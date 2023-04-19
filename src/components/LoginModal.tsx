@@ -20,7 +20,6 @@ const LoginModal = (props: { setUser: Function, setBuilds: Function, }) => {
     if(!!form.email && !!form.password){
       api.validateUser(form)
       .then(res => {
-        console.log(res)
         props.setUser(res.data[0].owner);
         props.setBuilds(res.data);
         const closer = document!.getElementById('login-modal') as HTMLInputElement;

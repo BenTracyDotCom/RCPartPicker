@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Banner = (props: { user: String, setBuilds: Function, builds: { name: String }[], setUser: Function, setBuild: Function, setPage: Function }) => {
+const Banner = (props: { user: String, setBuilds: Function, builds: { name: String, components: {type: string, name: string, photoUrl?:string, prices?: {host: string, url: string, price: string}[]}[] }[], setUser: Function, setBuild: Function, setPage: Function }) => {
 
   const handleLogin = () => {
     if (!props.user) {
@@ -29,7 +29,17 @@ const Banner = (props: { user: String, setBuilds: Function, builds: { name: Stri
       selector.selectedIndex = 0;
     } else {
       const buildsCopy = props.builds.slice(0)
-      const thisBuild = buildsCopy.filter(build => (build.name === e.currentTarget.value))
+      const thisBuild = buildsCopy.filter(build => (build.name === e.currentTarget.value))[0]
+      thisBuild.components.map(part => {
+        const thisPart = part;
+        thisPart.photoUrl = thisPart.photoUrl || ''
+        if(thisPart.prices?.length === 0){
+          thisPart.prices = [{host: '', url: '', price: '0.00'}]
+        }
+        thisPart.prices = thisPart.prices || [{host: '', url: '', price: '0.00'}]
+        return thisPart
+      })
+      console.log(thisBuild)
       props.setBuild(thisBuild)
       props.setPage('build')
     }
