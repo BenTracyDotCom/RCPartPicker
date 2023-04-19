@@ -6,7 +6,7 @@ const Build = (props: {
     name: string, owner: string, components: {
       name: string;
       type: string;
-      data: { protocol?: string, engines?: number };
+      data: { protocol?: string, engines?: number, voltage?: string, connector?: string, battery?: string};
       photoUrl: string;
       prices: {
         host: string;
@@ -21,6 +21,12 @@ const Build = (props: {
     name: 'My New Build',
     owner: props.user,
     components: [{}]
+  })
+
+  const [conflicts, setConflicts] = useState({
+    powerConflict: '',
+    protocolConflict: '',
+    engineConflict: ''
   })
 
   const [transmitter, setTransmitter] = useState({ photo: '', title: '', protocol: '' });
@@ -38,6 +44,12 @@ const Build = (props: {
   }
 
   useEffect(() => {
+    //declare validator objects to check against while we iterate through the build
+    const power = { esc: {connector: '', battery: ''},
+  battery: {connector: '', voltage: ''}}
+
+  const protocol = { transmitter: '', receiver: ''}
+
     //Keep track of required parts
     const requiredParts = ['airframe', 'esc', 'transmitter', 'propeller', 'motor']
     //keep form up to date with any imports
@@ -83,9 +95,23 @@ const Build = (props: {
       }, 0)
       setRunningTotal(newTotal)
 
-
+      //cross build items off the list and check validators
       props.build.components.forEach(component => {
         if (requiredParts.includes(component.type)) {
+          if(component.type === 'battery' && component.data.hasOwnProperty('connector')) {
+            power.battery.connector = component.data.connector!
+            power.battery.voltage = component.data.voltage!
+          }
+          if(component.type === 'esc' && component.data) {
+            power.esc.connector = component.data.connector!
+            power.esc.battery = component.data.battery!
+          }
+          if(component.type === 'receiver' && component.data) {
+            protocol.receiver = component.data.protocol!
+          }
+          if(component.type === 'transmitter' && component.data) {
+            protocol.transmitter = component.data.protocol!
+          }
           requiredParts.splice(requiredParts.indexOf(component.type), 1);
           setStillNeeds(requiredParts)
           if (requiredParts.length > 0) {
@@ -95,6 +121,22 @@ const Build = (props: {
           }
         }
       });
+      //check the validators for conflicts
+      if(power.esc.battery && power.battery.voltage){
+        const [max, min] = power.esc.battery.split('-')
+        if(parseInt(power.battery.voltage) < parseInt(min)){
+          setConflicts({...conflicts, powerConflict: "This ESC requires more power than this battery provides."})
+        } else if(parseInt(power.battery.voltage) > parseInt(max)){
+          setConflicts({...conflicts, powerConflict: "This battery has too high a voltage for this ESC."})
+        } else if(power.battery.connector.slice(-2) !== power.esc.connector.slice(-2)){
+          setConflicts({...conflicts, powerConflict: "This battery and ESC have different connectors."})
+        }
+      }
+
+      if(protocol.transmitter && protocol.receiver && protocol.receiver.split(',').filter((item => protocol.transmitter.split(',').includes(item))).length === 0){
+        setConflicts({...conflicts, protocolConflict: "This receiver is incompatible with this transmitter."})
+      }
+
     } else {
       //case: build is empty
       setRunningTotal(0)
@@ -118,7 +160,9 @@ const Build = (props: {
       <PartList build={props.build} stillNeeds={stillNeeds} setStillNeeds={setStillNeeds} setBuild={props.setBuild} />
       <div>{`Running Total: $${runningTotal.toFixed(2)}`}</div>
       {!complete && <div>{`Your Build Still Needs: ${stillNeeds.join(', ')}`}</div>}
-      {complete && <div>It'll fly!</div>}
+
+      {complete && !conflicts.powerConflict && !conflicts.protocolConflict && <div>It'll fly!</div>}
+
     </div>
   )
 }
