@@ -25,6 +25,13 @@ const api = {
       data: payload
     }
     return axios(options)
+  },
+  getProducts: (type: String) => {
+    let options = {
+      method: 'GET',
+      url: window.location + `api/products/${type}`
+    }
+    return axios(options)
   }
 }
 

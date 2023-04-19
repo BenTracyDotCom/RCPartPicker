@@ -2,7 +2,7 @@ import db from './db.js';
 //import saltHash from 'password-salt-and-hash'
 
 const model = {
-  getUser: (user:{
+  getUser: (user: {
     username: String,
     email: String,
     password: String,
@@ -12,7 +12,7 @@ const model = {
       email: user.email
     })
   },
-  registerUser: (user:{
+  registerUser: (user: {
     username: String,
     email: String,
     password: String,
@@ -22,7 +22,7 @@ const model = {
       email: user.email
     })
   },
-  addPart: (part:{
+  addPart: (part: {
     name: String,
     type: String,
     data: Object,
@@ -48,11 +48,17 @@ const model = {
     })
   },
   validateUser: async (userInfo: {
-    email: String, password: String}) => {
-      return db.User.findOne({
-        email: userInfo!.email!
-      })
-    }
+    email: String, password: String
+  }) => {
+    return db.User.findOne({
+      email: userInfo!.email!
+    })
+  },
+  getProducts: (type: String) => {
+    return db.Part.find({
+      type: type
+    })
+  }
 }
 
 export default model

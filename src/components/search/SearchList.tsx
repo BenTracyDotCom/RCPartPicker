@@ -1,11 +1,24 @@
 import SearchResult from './SearchResult.jsx'
 
-const SearchList = () => {
+const SearchList = (props: {
+  build: {
+    name: String, owner: String, components: {
+      name: String;
+      type: String;
+      data: Object;
+      photoUrl: String;
+      prices: {
+        host: String;
+        url: string;
+        price: string;
+      }[]
+    }[]
+  }, setBuild: Function, items: any[]
+}) => {
 
   return (
     <div>
-      <div>Search List</div>
-      <SearchResult />
+      {props.items.map(item => (<SearchResult item={item} build={props.build} setBuild={props.setBuild}/>))}
     </div>
   )
 }

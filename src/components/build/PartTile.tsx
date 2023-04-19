@@ -1,6 +1,14 @@
 
 
-const PartTile = (props: { part: { name: String, type: String, data: Object, photoUrl: String, prices: { host: String, url: string, price: string }[] } }) => {
+const PartTile = (props: { part: { name: String, type: String, data: Object, photoUrl: String, prices: { host: String, url: string, price: string }[] }, build: any, setBuild: Function }) => {
+
+  const handleDelete = () => {
+
+    const components = props.build.components.slice(0)
+    const index = components.findIndex((item: {name: string}) => item.name === props.part.name)
+    components.splice(index, 1)
+    props.setBuild({...props.build, components:components})
+  }
 
   const bestPrice = props.part?.prices.sort((a, b) => {
     if (parseFloat(a.price) < parseFloat(b.price)) {
@@ -16,12 +24,10 @@ const PartTile = (props: { part: { name: String, type: String, data: Object, pho
     <div className="border-2">
       <div className="navbar bg-base-100">
         <div className="flex-1">
-          <a className="btn btn-ghost normal-case text-xl">{`+ Add Part`}</a>
+          <a className="btn btn-ghost normal-case text-xl">{props.part.name}</a>
         </div>
         <div className="flex-none">
-          <button className="btn btn-square btn-ghost">
-
-          </button>
+          <button className="btn btn-error btn-xs" onClick={handleDelete}>X</button>
         </div>
       </div>
     </div>
