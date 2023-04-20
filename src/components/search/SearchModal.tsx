@@ -32,8 +32,8 @@ const Search = (props: {build: {name: String, owner: String, components: { name:
       <input type="checkbox" id="search-modal" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box">
-          {type && <h2>{`${type}`}</h2>}
-          <div className="form-control w-full max-w-xs">
+          {type && <div className="font-bold text-2xl fixed">{`${type}`}</div>}
+          <div className="form-control w-full max-w-xs mt-10">
             <label className="label">
               <span className="label-text">Select a part type:</span>
             </label>
@@ -50,7 +50,7 @@ const Search = (props: {build: {name: String, owner: String, components: { name:
           </div>
         <SearchList items={items} build={props.build} setBuild={props.setBuild}/>
           <div className="modal-action">
-            <label htmlFor="search-modal" className="btn">Yay!</label>
+            <label htmlFor="search-modal" className="btn btn-primary">Cancel</label>
           </div>
         </div>
       </div>

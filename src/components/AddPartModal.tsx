@@ -63,7 +63,7 @@ const AddPartModal = (props: Object) => {
               <input type="text" className="input input-bordered w-full" onChange={handlePrices} />
             </label>
           <div className="modal-action">
-            <label htmlFor="add-part-modal" className="btn">Yay!</label>
+            <label htmlFor="add-part-modal" className="btn btn-primary">Cancel</label>
           </div>
         </div>
       </div>

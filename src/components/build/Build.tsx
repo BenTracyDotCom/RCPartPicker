@@ -77,11 +77,11 @@ const Build = (props: {
     setBuildForm({...buildForm, owner: props.user})
   }, [props.user])
 
-  useEffect(() => {
-    setBuildForm({...buildForm, name:props.build.name})
-  }, [])
 
   useEffect(() => {
+
+
+    setBuildForm({...buildForm, name:props.build.name})
 
     //reset conflicts, we'll check for them again
     setConflicts({
@@ -96,17 +96,17 @@ const Build = (props: {
 
   const protocol = { transmitter: '', receiver: ''}
 
-    //Keep track of required parts
-    const requiredParts = ['airframe', 'esc', 'transmitter', 'receiver', 'propeller', 'motor']
-    //keep form up to date with any imports
-    setBuildForm({ ...buildForm, owner: props.build.owner, components: props.build.components })
+  //Keep track of required parts
+  const requiredParts = ['airframe', 'esc', 'transmitter', 'receiver', 'propeller', 'motor']
+  //keep form up to date with any imports
+  setBuildForm({ ...buildForm, owner: props.build.owner, components: props.build.components })
 
-    //case: we have build components to consider
-    if (props.build.components.length > 0) {
-      const transmitterQ = props.build.components.filter(part => part.type === 'transmitter')[0]
-      //case: build includes a transmitter
-      if (!!transmitterQ) {
-        setTransmitter({ photo: transmitterQ.photoUrl, title: transmitterQ.name, protocol: transmitterQ.data.protocol! });
+  //case: we have build components to consider
+  if (props.build.components.length > 0) {
+    const transmitterQ = props.build.components.filter(part => part.type === 'transmitter')[0]
+    //case: build includes a transmitter
+    if (!!transmitterQ) {
+      setTransmitter({ photo: transmitterQ.photoUrl, title: transmitterQ.name, protocol: transmitterQ.data.protocol! });
       } else {
         //no transmitter
         setTransmitter({ photo: '', title: '', protocol: '' })
@@ -195,8 +195,8 @@ const Build = (props: {
     <div className="w-11/12 m-auto flex-row justify-center">
       <input type="text" value={buildForm.name} className="input input-ghost w-full text-center text-3xl my-3" placeholder="My New Build" onChange={handleTitle} />
 
-     <div>
-       <div className="pt-10 mb-32 float-right mr-5"> Your Transmitter:
+     <div className="flex justify-around">
+       <div className="pt-10 mb-32 mr-5"> Your Transmitter:
        {transmitter.title && <img src={transmitter.photo} className="w-32" />}
         </div>
         {airframe.title && <div>
@@ -204,17 +204,18 @@ const Build = (props: {
           <div className=" -mt-10">{airframe.title}</div>
         </div>}
      </div>
-      <div className="pt-5">
-      <div className="float-right pb-5">{`Running Total: $${runningTotal.toFixed(2)}`}</div>
-      {!complete && <div>{`Your Build Still Needs: ${stillNeeds.join(', ')}`}</div>}
+
+      <div className="pt-5 flex-row">
+      <span className="pb-5 font-bold">{`Running Total: $${runningTotal.toFixed(2)}`}</span>
+      {!complete && <span className="float-right font-bold">{`Your Build Still Needs:  ${stillNeeds.join(', ')}`}</span>}
       {conflicts.powerConflict && <div className="text-error">{conflicts.powerConflict}</div>}
       {conflicts.protocolConflict && <div className="text-error">{conflicts.protocolConflict}</div>}
       {complete && !conflicts.powerConflict && !conflicts.protocolConflict && <div>It'll fly!</div>}
         <PartList build={props.build} stillNeeds={stillNeeds} setStillNeeds={setStillNeeds} setBuild={props.setBuild} />
       </div>
       <div className=" pb-10 flex justify-around">
-        <button className="btn mb-10" onClick={handleSubmit}>Save</button>
-        <button className="btn btn-error mb-10" onClick={handleDelete}>Delete</button>
+        <button className="btn my-5" onClick={handleSubmit}>Save</button>
+        <button className="btn btn-error my-5" onClick={handleDelete}>Delete</button>
       </div>
 
 

@@ -23,7 +23,7 @@ const PartTile = (props: { part: { name: String, type: String, data?: Object, ph
 
 
   return (
-    <div className="border-2">
+    <div className="border-2 rounded-lg drop-shadow-md my-1">
       <div className="navbar bg-base-100">
         <div className="flex-1">
           <label className="label">
@@ -31,7 +31,7 @@ const PartTile = (props: { part: { name: String, type: String, data?: Object, ph
             </label>
           <a href={bestPrice.url} className="btn btn-ghost normal-case text-xl" target="_blank">{props.part.name}</a>
         </div>
-        <div>{parseFloat(bestPrice.price).toFixed(2)}</div>
+        <div className="mr-5 font-bold">{parseFloat(bestPrice.price).toFixed(2)}</div>
         <div className="flex-none">
           <button className="btn btn-error btn-xs" onClick={handleDelete}>X</button>
         </div>

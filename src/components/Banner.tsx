@@ -9,6 +9,7 @@ const Banner = (props: { user: String, setBuilds: Function, builds: { name: Stri
     } else {
       props.setBuilds([]);
       props.setUser('');
+      props.setPage('home')
     }
   }
 
@@ -48,11 +49,12 @@ const Banner = (props: { user: String, setBuilds: Function, builds: { name: Stri
   return (
     <div className="bg-blue-900 mt-0 flex items-center justify-between">
       <h1 className="text-amber-400 font-mono font-bold pl-5">RC Part Picker</h1>
-      {props.user && <div>{`Welcome, ${props.user}!`}</div>}
-      <div className="w-10/12 h-min flex justify-end">
+      <div className="w-10/12 h-min py-y flex justify-end">
         <span className="text-amber-400 cursor-pointer hover:text-green-300" onClick={handleLogin}>{!!props.user ? 'logout  |  ' : 'login  |  '}</span>
         {!props.user && <span className="text-amber-400 ml-2 cursor-pointer hover:text-green-300" onClick={handleRegister}> register</span>}
       </div>
+      {props.user && <label className="label">
+        <span className="label-text  text-amber-400">{`Welcome, ${props.user}!`}</span></label>}
       <select className="select w-full max-w-xs m-5" onChange={handleBuild} id="build-selector">
         <option disabled selected>Your Builds:</option>
         {props.builds.map(build => (<option>{build.name}</option>))}
