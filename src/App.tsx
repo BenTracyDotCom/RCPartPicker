@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import './App.css'
 import Banner from './components/Banner'
 import LoginModal from './components/LoginModal'
 import RegisterModal from './components/RegisterModal'
@@ -16,8 +15,7 @@ function App() {
   const [page, setPage] = useState('home')
 
   return (
-    <div className="App">
-      <h1 className="text-red-600">RC Part Picker</h1>
+    <div className="App border-2 w-full">
       <Banner user={user} setUser={setUser} setBuilds={setBuilds} builds={builds} setBuild={setBuild} setPage={setPage}/>
       <SearchModal build={build} setBuild={setBuild}/>
       <AddPartModal />

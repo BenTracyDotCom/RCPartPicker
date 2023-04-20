@@ -20,7 +20,7 @@ const Build = (props: {
   const [buildForm, setBuildForm] = useState({
     name: '',
     owner: props.user,
-    components: []
+    components: props.build.components
   })
 
   const [conflicts, setConflicts] = useState({
@@ -69,7 +69,7 @@ const Build = (props: {
     buildsCopy = buildsCopy.filter(build => build.name !== props.build.name)
     props.setBuilds(buildsCopy)
     props.setBuild({...props.build, name: '', components: [{name:'', type: '', data: {}, photoUrl: '', prices: [{host: '', url: '', price: '0'}]}]})
-    setBuildForm({...buildForm, name: '', components: [] })
+    setBuildForm({...buildForm, name: '', components: props.build.components })
     props.setPage('home')
   }
 
@@ -78,8 +78,10 @@ const Build = (props: {
   }, [props.user])
 
   useEffect(() => {
-    //store the current build in the form in case user wants to save
-    setBuildForm({...buildForm, components:props.build.components})
+    setBuildForm({...buildForm, name:props.build.name})
+  }, [])
+
+  useEffect(() => {
 
     //declare validator objects to check against while we iterate through the build
     const power = { esc: {connector: '', battery: ''},
@@ -183,26 +185,30 @@ const Build = (props: {
   }, [props.build])
 
   return (
-    <div>
-      <input type="text" value={buildForm.name} className="input input-ghost w-full text-center text-3xl" placeholder="My New Build" onChange={handleTitle} />
+    <div className="w-11/12 m-auto flex-row justify-center">
+      <input type="text" value={buildForm.name} className="input input-ghost w-full text-center text-3xl my-3" placeholder="My New Build" onChange={handleTitle} />
 
-     <div className="float-left pt-10"> Your transmitter:
-     {transmitter.title && <img src={transmitter.photo} className="w-32" />}
-      </div>
-      {airframe.title && <div>
-        <img src={airframe.photo} />
-        <div>{airframe.title}</div>
-      </div>}
+     <div>
+       <div className="pt-10 mb-32 float-right mr-5"> Your Transmitter:
+       {transmitter.title && <img src={transmitter.photo} className="w-32" />}
+        </div>
+        {airframe.title && <div>
+          <img className="h-80" src={airframe.photo} />
+          <div className=" -mt-10">{airframe.title}</div>
+        </div>}
+     </div>
       <div className="pt-5">
-        <PartList build={props.build} stillNeeds={stillNeeds} setStillNeeds={setStillNeeds} setBuild={props.setBuild} />
-      </div>
-      <div>{`Running Total: $${runningTotal.toFixed(2)}`}</div>
+      <div className="float-right pb-5">{`Running Total: $${runningTotal.toFixed(2)}`}</div>
       {!complete && <div>{`Your Build Still Needs: ${stillNeeds.join(', ')}`}</div>}
       {conflicts.powerConflict && <div className="text-error">{conflicts.powerConflict}</div>}
       {conflicts.protocolConflict && <div className="text-error">{conflicts.protocolConflict}</div>}
       {complete && !conflicts.powerConflict && !conflicts.protocolConflict && <div>It'll fly!</div>}
-      <button className="btn float-right" onClick={handleSubmit}>Save</button>
-      <button className="btn btn-error float-left" onClick={handleDelete}>Delete</button>
+        <PartList build={props.build} stillNeeds={stillNeeds} setStillNeeds={setStillNeeds} setBuild={props.setBuild} />
+      </div>
+      <div className=" pb-10 flex justify-around">
+        <button className="btn mb-10" onClick={handleSubmit}>Save</button>
+        <button className="btn btn-error mb-10" onClick={handleDelete}>Delete</button>
+      </div>
 
 
 

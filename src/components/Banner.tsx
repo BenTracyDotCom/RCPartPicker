@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Banner = (props: { user: String, setBuilds: Function, builds: { name: String, components: {type: string, name: string, photoUrl?:string, prices?: {host: string, url: string, price: string}[]}[] }[], setUser: Function, setBuild: Function, setPage: Function }) => {
+const Banner = (props: { user: String, setBuilds: Function, builds: { name: String, components: { type: string, name: string, photoUrl?: string, prices?: { host: string, url: string, price: string }[] }[] }[], setUser: Function, setBuild: Function, setPage: Function }) => {
 
   const handleLogin = () => {
     if (!props.user) {
@@ -23,9 +23,9 @@ const Banner = (props: { user: String, setBuilds: Function, builds: { name: Stri
   }
 
   const handleBuild = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    if(e.currentTarget.value === "+ New Build"){
+    if (e.currentTarget.value === "+ New Build") {
       props.setPage('build')
-      props.setBuild({name: '', owner: props.user, components: []})
+      props.setBuild({ name: 'My New Build', owner: props.user, components: [] })
       const selector = document.getElementById('build-selector') as HTMLSelectElement
       selector.selectedIndex = 0;
     } else {
@@ -34,10 +34,10 @@ const Banner = (props: { user: String, setBuilds: Function, builds: { name: Stri
       thisBuild.components.map(part => {
         const thisPart = part;
         thisPart.photoUrl = thisPart.photoUrl || ''
-        if(thisPart.prices?.length === 0){
-          thisPart.prices = [{host: '', url: '', price: '0.00'}]
+        if (thisPart.prices?.length === 0) {
+          thisPart.prices = [{ host: '', url: '', price: '0.00' }]
         }
-        thisPart.prices = thisPart.prices || [{host: '', url: '', price: '0.00'}]
+        thisPart.prices = thisPart.prices || [{ host: '', url: '', price: '0.00' }]
         return thisPart
       })
       props.setBuild(thisBuild)
@@ -46,16 +46,18 @@ const Banner = (props: { user: String, setBuilds: Function, builds: { name: Stri
   }
 
   return (
-    <div>
-      <div>Banner</div>
-      <select className="select w-full max-w-xs" onChange={handleBuild} id="build-selector">
+    <div className="bg-blue-900 mt-0 flex items-center justify-between">
+      <h1 className="text-amber-400 font-mono font-bold pl-5">RC Part Picker</h1>
+      {props.user && <div>{`Welcome, ${props.user}!`}</div>}
+      <div className="w-10/12 h-min flex justify-end">
+        <span className="text-amber-400 cursor-pointer hover:text-green-300" onClick={handleLogin}>{!!props.user ? 'logout  |  ' : 'login  |  '}</span>
+        {!props.user && <span className="text-amber-400 ml-2 cursor-pointer hover:text-green-300" onClick={handleRegister}> register</span>}
+      </div>
+      <select className="select w-full max-w-xs m-5" onChange={handleBuild} id="build-selector">
         <option disabled selected>Your Builds:</option>
         {props.builds.map(build => (<option>{build.name}</option>))}
         <option>+ New Build</option>
       </select>
-      {props.user && <div>{`Welcome, ${props.user}!`}</div>}
-      <div onClick={handleLogin}>{!!props.user ? 'logout' : 'login'}</div>
-      {!props.user && <div onClick={handleRegister}>register</div>}
       {props.user === "admin" && <div onClick={handleAddPart}>Add Part(s)</div>}
     </div>
   )
