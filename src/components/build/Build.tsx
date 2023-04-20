@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import PartList from './PartList.jsx'
+import PartList from './PartList.jsx';
+import api from '../../api/api.js'
 
 const Build = (props: {
   build: {
@@ -14,7 +15,7 @@ const Build = (props: {
         price: string;
       }[]
     }[]
-  }, user: String, setBuild: Function
+  }, user: string, setBuild: Function
 }) => {
 
   const [buildForm, setBuildForm] = useState({
@@ -43,7 +44,25 @@ const Build = (props: {
     setBuildForm({ ...buildForm, name: e.currentTarget.value })
   }
 
+  const handleSubmit = () => {
+    if(props.user){
+      api.sendBuild(buildForm)
+      .then(res => console.log(res))
+      .catch(console.log)
+    } else {
+      const login = document!.getElementById('login-modal') as HTMLInputElement;
+      login.checked = true;
+    }
+  }
+
   useEffect(() => {
+    setBuildForm({...buildForm, owner: props.user})
+  }, [props.user])
+
+  useEffect(() => {
+    //store the current build in the form in case user wants to save
+    setBuildForm({...buildForm, components:props.build.components})
+
     //declare validator objects to check against while we iterate through the build
     const power = { esc: {connector: '', battery: ''},
   battery: {connector: '', voltage: ''}}
@@ -156,13 +175,13 @@ const Build = (props: {
         <img src={airframe.photo} />
         <div>{airframe.title}</div>
       </div>}
-
       <PartList build={props.build} stillNeeds={stillNeeds} setStillNeeds={setStillNeeds} setBuild={props.setBuild} />
       <div>{`Running Total: $${runningTotal.toFixed(2)}`}</div>
       {!complete && <div>{`Your Build Still Needs: ${stillNeeds.join(', ')}`}</div>}
       {conflicts.powerConflict && <div className="text-error">{conflicts.powerConflict}</div>}
       {conflicts.protocolConflict && <div className="text-error">{conflicts.protocolConflict}</div>}
       {complete && !conflicts.powerConflict && !conflicts.protocolConflict && <div>It'll fly!</div>}
+      <button className="btn" onClick={handleSubmit}>Save</button>
 
 
 

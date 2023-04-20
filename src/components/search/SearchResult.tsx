@@ -24,9 +24,7 @@ const SearchResult = (props: {
         let includedPart = thisPart.data.includes[i]
         includedPart.prices = [{'host': thisPart.name, 'url': bestPrice.url, 'price': 0}];
         includedPart.photoUrl = thisPart.photoUrl;
-        console.log(includedPart)
         if(includedPart.qty > 1){
-          console.log(includedPart.qty, 'part qty')
           includedPart.qty --;
           i --
         }

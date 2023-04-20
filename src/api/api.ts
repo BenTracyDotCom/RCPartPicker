@@ -32,6 +32,14 @@ const api = {
       url: window.location + `api/products/${type}`
     }
     return axios(options)
+  },
+  sendBuild: (buildForm: {name: string, owner: string, components: any[]}) => {
+    let options = {
+      method: 'Post',
+      url: window.location + `api/builds`,
+      data: buildForm
+    }
+    return axios(options)
   }
 }
 

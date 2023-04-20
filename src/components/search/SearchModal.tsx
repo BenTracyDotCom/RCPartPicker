@@ -20,11 +20,9 @@ const Search = (props: {build: {name: String, owner: String, components: { name:
 
   const handleType = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setType(titleTypes[e.currentTarget.selectedIndex])
-    console.log(e.currentTarget.selectedIndex, 'index')
     api.getProducts(e.currentTarget.value)
     .then(res => {
       setItems(res.data)
-      console.log(res.data)
     })
     .catch(err => console.log(err))
   }

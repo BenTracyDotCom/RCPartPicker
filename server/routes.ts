@@ -10,4 +10,6 @@ router.post('/api/users', db.controllers.validateUser);
 
 router.get('/api/products/:type', db.controllers.getProducts)
 
+router.post('/api/builds', db.controllers.saveBuild)
+
 export default router
