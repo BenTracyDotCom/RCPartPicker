@@ -24,7 +24,7 @@ function App() {
       <LoginModal setUser={setUser} setBuilds={setBuilds}/>
       <RegisterModal />
       {page === 'home' && <Homepage />}
-      {page === 'build' && <Build build={build} user={user} setBuild={setBuild}/>}
+      {page === 'build' && <Build build={build} user={user} setBuild={setBuild} builds={builds} setBuilds={setBuilds}/>}
 
     </div>
   )

@@ -15,7 +15,7 @@ const Build = (props: {
         price: string;
       }[]
     }[]
-  }, user: string, setBuild: Function
+  }, user: string, setBuild: Function, builds: any[], setBuilds:Function
 }) => {
 
   const [buildForm, setBuildForm] = useState({
@@ -47,7 +47,11 @@ const Build = (props: {
   const handleSubmit = () => {
     if(props.user){
       api.sendBuild(buildForm)
-      .then(res => console.log(res))
+      .then(() => {
+        const buildsCopy = props.builds.slice(0);
+        buildsCopy.push(buildForm)
+        props.setBuilds(buildsCopy)
+        })
       .catch(console.log)
     } else {
       const login = document!.getElementById('login-modal') as HTMLInputElement;
