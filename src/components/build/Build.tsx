@@ -149,9 +149,9 @@ const Build = (props: {
     <div>
       <input type="text" value={buildForm.name} className="input input-ghost w-full text-center text-3xl" placeholder="My New Build" onChange={handleTitle} />
 
-      {transmitter.title && <div className="float-left pt-10"> Your transmitter:
-        <img src={transmitter.photo} className="w-32" />
-      </div>}
+     <div className="float-left pt-10"> Your transmitter:
+     {transmitter.title && <img src={transmitter.photo} className="w-32" />}
+      </div>
       {airframe.title && <div>
         <img src={airframe.photo} />
         <div>{airframe.title}</div>
@@ -163,6 +163,8 @@ const Build = (props: {
       {conflicts.powerConflict && <div className="text-error">{conflicts.powerConflict}</div>}
       {conflicts.protocolConflict && <div className="text-error">{conflicts.protocolConflict}</div>}
       {complete && !conflicts.powerConflict && !conflicts.protocolConflict && <div>It'll fly!</div>}
+
+
 
     </div>
   )
