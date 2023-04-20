@@ -179,7 +179,7 @@ const Build = (props: {
         }
       }
 
-      if(protocol.transmitter && protocol.receiver && protocol.receiver.split(',').filter((item => protocol.transmitter.split(',').includes(item))).length === 0){
+      if(protocol.transmitter && protocol.receiver && protocol.receiver.split(',').filter((item => protocol.transmitter.split(',').includes(item.trim()))).length === 0){
         setConflicts({...conflicts, protocolConflict: "This receiver is incompatible with this transmitter."})
       }
 
