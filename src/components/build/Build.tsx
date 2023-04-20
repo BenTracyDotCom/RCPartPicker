@@ -83,6 +83,13 @@ const Build = (props: {
 
   useEffect(() => {
 
+    //reset conflicts, we'll check for them again
+    setConflicts({
+      powerConflict: '',
+      protocolConflict: '',
+      engineConflict: ''
+    })
+
     //declare validator objects to check against while we iterate through the build
     const power = { esc: {connector: '', battery: ''},
   battery: {connector: '', voltage: ''}}
