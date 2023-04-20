@@ -12,4 +12,7 @@ router.get('/api/products/:type', db.controllers.getProducts)
 
 router.post('/api/builds', db.controllers.saveBuild)
 
+router.delete('/api/builds', db.controllers.deleteBuild)
+//TODO: protect this route
+
 export default router

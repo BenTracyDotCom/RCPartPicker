@@ -25,7 +25,7 @@ const Banner = (props: { user: String, setBuilds: Function, builds: { name: Stri
   const handleBuild = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if(e.currentTarget.value === "+ New Build"){
       props.setPage('build')
-      props.setBuild({name: 'My New Build', owner: props.user, components: []})
+      props.setBuild({name: '', owner: props.user, components: []})
       const selector = document.getElementById('build-selector') as HTMLSelectElement
       selector.selectedIndex = 0;
     } else {

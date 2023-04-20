@@ -15,13 +15,12 @@ const Build = (props: {
         price: string;
       }[]
     }[]
-  }, user: string, setBuild: Function, builds: any[], setBuilds:Function
-}) => {
+  }, user: string, setBuild: Function, builds: any[], setBuilds:Function, setPage: Function}) => {
 
   const [buildForm, setBuildForm] = useState({
-    name: 'My New Build',
+    name: '',
     owner: props.user,
-    components: [{}]
+    components: []
   })
 
   const [conflicts, setConflicts] = useState({
@@ -59,6 +58,21 @@ const Build = (props: {
     }
   }
 
+  const handleDelete = () => {
+    if(props.user){
+      api.deleteBuild(buildForm)
+      .then(() => {
+      })
+      .catch(console.log)
+    }
+    let buildsCopy = props.builds.slice(0);
+    buildsCopy = buildsCopy.filter(build => build.name !== props.build.name)
+    props.setBuilds(buildsCopy)
+    props.setBuild({...props.build, name: '', components: [{name:'', type: '', data: {}, photoUrl: '', prices: [{host: '', url: '', price: '0'}]}]})
+    setBuildForm({...buildForm, name: '', components: [] })
+    props.setPage('home')
+  }
+
   useEffect(() => {
     setBuildForm({...buildForm, owner: props.user})
   }, [props.user])
@@ -76,7 +90,7 @@ const Build = (props: {
     //Keep track of required parts
     const requiredParts = ['airframe', 'esc', 'transmitter', 'receiver', 'propeller', 'motor']
     //keep form up to date with any imports
-    setBuildForm({ name: props.build.name, owner: props.build.owner, components: props.build.components })
+    setBuildForm({ ...buildForm, owner: props.build.owner, components: props.build.components })
 
     //case: we have build components to consider
     if (props.build.components.length > 0) {
@@ -179,13 +193,16 @@ const Build = (props: {
         <img src={airframe.photo} />
         <div>{airframe.title}</div>
       </div>}
-      <PartList build={props.build} stillNeeds={stillNeeds} setStillNeeds={setStillNeeds} setBuild={props.setBuild} />
+      <div className="pt-5">
+        <PartList build={props.build} stillNeeds={stillNeeds} setStillNeeds={setStillNeeds} setBuild={props.setBuild} />
+      </div>
       <div>{`Running Total: $${runningTotal.toFixed(2)}`}</div>
       {!complete && <div>{`Your Build Still Needs: ${stillNeeds.join(', ')}`}</div>}
       {conflicts.powerConflict && <div className="text-error">{conflicts.powerConflict}</div>}
       {conflicts.protocolConflict && <div className="text-error">{conflicts.protocolConflict}</div>}
       {complete && !conflicts.powerConflict && !conflicts.protocolConflict && <div>It'll fly!</div>}
-      <button className="btn" onClick={handleSubmit}>Save</button>
+      <button className="btn float-right" onClick={handleSubmit}>Save</button>
+      <button className="btn btn-error float-left" onClick={handleDelete}>Delete</button>
 
 
 

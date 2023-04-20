@@ -52,6 +52,10 @@ const controllers = {
           }
         })
       })
+  },
+  deleteBuild: (req: express.Request, res: express.Response) => {
+    model.deleteBuild(req.body)
+    .then(() => res.status(204).end())
   }
 }
 

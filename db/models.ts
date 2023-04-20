@@ -63,6 +63,9 @@ const model = {
       email: userInfo!.email!
     })
   },
+  deleteBuild: (build: {name: String, owner: String}) => {
+    return db.Build.findOneAndDelete({name: build.name, owner: build.owner})
+  },
   getProducts: (type: String) => {
     return db.Part.find({
       type: type

@@ -40,6 +40,14 @@ const api = {
       data: buildForm
     }
     return axios(options)
+  },
+  deleteBuild: (buildForm: {name: string, owner: string, components: any[]}) => {
+    let options = {
+      method: 'DELETE',
+      url: window.location + 'api/builds',
+      data: buildForm
+    }
+    return axios(options)
   }
 }
 
