@@ -51,7 +51,7 @@ const SearchResult = (props: {
     <div className="pt-5">
       <button className="btn btn-circle btn-s btn-success float-right" onClick={handleAddPart}>+</button>
       <div>{props.item.name}</div>
-      <div>{bestPrice.price}</div>
+      <div>{`$${bestPrice.price}`}</div>
       <img src={props.item.photoUrl} className="h-40 w-40 m-auto" />
     </div>
   )

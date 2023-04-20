@@ -28,12 +28,20 @@ const PartTile = (props: { part: { name: String, type: String, data?: Object, ph
         <div className="flex-1">
           <label className="label">
             <span className="label-text">{props.part.type.toUpperCase()}</span>
-            </label>
+          </label>
           <a href={bestPrice.url} className="btn btn-ghost normal-case text-xl" target="_blank">{props.part.name}</a>
         </div>
-        <div className="mr-5 font-bold">{parseFloat(bestPrice.price).toFixed(2)}</div>
-        <div className="flex-none">
-          <button className="btn btn-error btn-xs" onClick={handleDelete}>X</button>
+        <div className="flex flex-col items-end">
+          <div className="flex flex-row">
+            <span className="mx-5 font-bold">{parseFloat(bestPrice.price).toFixed(2)}</span>
+              <span className="btn btn-error btn-xs" onClick={handleDelete}>X</span>
+          </div>
+          <div className="form-control -mb-2">
+            <label className="label cursor-pointer">
+              <span className="label-text mr-2 text-blue-700">ordered</span>
+              <input type="checkbox" className="checkbox checkbox-xs checkbox-info" />
+            </label>
+          </div>
         </div>
       </div>
     </div>

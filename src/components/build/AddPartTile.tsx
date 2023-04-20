@@ -9,8 +9,6 @@ const AddPartTile = () => {
         <label htmlFor="search-modal" className="btn">+ Add Part</label>
       </div>
       <div className="flex-none">
-        <button className="btn btn-square btn-ghost">
-        </button>
       </div>
     </div>
   </div>

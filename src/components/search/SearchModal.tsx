@@ -16,7 +16,7 @@ const Search = (props: {build: {name: String, owner: String, components: { name:
   const [items, setItems] = useState([])
   const [type, setType] = useState('')
 
-  const titleTypes = ['', 'Airframes','Batteries', "ESC's", "FC's", 'Receivers', 'Servos', 'Transmitters']
+  const titleTypes = ['', 'Airframes','Batteries', "ESC's", "FC's",'Motors', 'Propellers', 'Receivers', 'Servos', 'Transmitters']
 
   const handleType = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setType(titleTypes[e.currentTarget.selectedIndex])
@@ -43,6 +43,8 @@ const Search = (props: {build: {name: String, owner: String, components: { name:
               <option value='battery'>Battery</option>
               <option value='esc'>Electronic Speed Control</option>
               <option value='fc'>Flight Controller</option>
+              <option value='motor'>Motor</option>
+              <option value='propeller'>Propeller</option>
               <option value='receiver'>Receiver</option>
               <option value='servo'>Servo</option>
               <option value='transmitter'>Transmitter</option>

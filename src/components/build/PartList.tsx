@@ -14,7 +14,6 @@ const PartList = (props:{build: {name: String, owner: String, components: { name
 
   return (
     <div className="w-10/12 m-auto">
-    {props.stillNeeds.includes('airframe') && <div className="text-blue-600">Start with an airframe!</div>}
       <AddPartTile />
     {props.build.components.map(component => (<PartTile part={component} build={props.build} setBuild={props.setBuild}/>))}
     </div>
