@@ -51,7 +51,7 @@ const Build = (props: {
   const protocol = { transmitter: '', receiver: ''}
 
     //Keep track of required parts
-    const requiredParts = ['airframe', 'esc', 'transmitter', 'propeller', 'motor']
+    const requiredParts = ['airframe', 'esc', 'transmitter', 'receiver', 'propeller', 'motor']
     //keep form up to date with any imports
     setBuildForm({ name: props.build.name, owner: props.build.owner, components: props.build.components })
 
@@ -160,7 +160,8 @@ const Build = (props: {
       <PartList build={props.build} stillNeeds={stillNeeds} setStillNeeds={setStillNeeds} setBuild={props.setBuild} />
       <div>{`Running Total: $${runningTotal.toFixed(2)}`}</div>
       {!complete && <div>{`Your Build Still Needs: ${stillNeeds.join(', ')}`}</div>}
-
+      {conflicts.powerConflict && <div className="text-error">{conflicts.powerConflict}</div>}
+      {conflicts.protocolConflict && <div className="text-error">{conflicts.protocolConflict}</div>}
       {complete && !conflicts.powerConflict && !conflicts.protocolConflict && <div>It'll fly!</div>}
 
     </div>
