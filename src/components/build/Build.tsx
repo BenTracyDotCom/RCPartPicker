@@ -81,8 +81,9 @@ const Build = (props: {
 
   useEffect(() => {
 
-
-    setBuildForm({ ...buildForm, name: props.build.name })
+    let buildFormCopy = buildForm;
+    buildFormCopy.name = props.build.name
+    setBuildForm(buildFormCopy)
 
     //reset conflicts, we'll check for them again
     setConflicts({
