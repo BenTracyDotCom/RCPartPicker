@@ -50,10 +50,12 @@ data: {
   photoUrl: String,
   prices: [
     {
+      host: String,
       url: String,
       price: String
     },
     {
+      host: "domain name, might be used for trend analysis someday"
       url: "thisWillBeTheActiveLinkOnAllIncludedComponents.com",
       price: "thisWillBeComparedAndOnlyTheLowestWillShowWithItsAssociatedURL.99"
     }
