@@ -86,15 +86,27 @@ prices: [same as above]
 ```
 ### FC's
 ```
-//TODO
+name: String,
+type: "esc",
+data: TODO
+photoUrl: String,
+prices: [same as above]
 ```
 ### Motors
 ```
-//TODO
+name: String,
+type: "motor",
+data: TODO
+photoUrl: String,
+prices: [same as above]
 ```
 ### Propellers
 ```
-//TODO
+name: String,
+type: "propeller",
+data: TODO
+photoUrl: String,
+prices: [same as above]
 ```
 ### Receivers
 ```
@@ -111,7 +123,11 @@ prices: [same as above]
 ```
 ### Servos
 ```
-//TODO
+name: String,
+type: "servo",
+data: TODO
+photoUrl: String,
+prices: [same as above]
 ```
 ### Transmitters
 ```
