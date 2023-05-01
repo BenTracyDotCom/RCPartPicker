@@ -28,13 +28,58 @@ npm run dev
 An add-part modal to populate the database is the next construction item. Until then, you'll have to find an inelegant way to get parts into the database according to the following schema:
 
 ### Airframes
-//TODO
+name: String,
+type: "airframe",
+data: {
+  engines: Number (determines required motors, props),
+  wingspan: String(opt),
+  anythingYouFindWorthNoting: String,
+  includes: [
+    {
+      type: String (lowercase, must be valid part type!)
+      name: String,
+      qty: Number
+    },
+    {
+      type: "esc" or "servo" etc,
+      name: "Example Plane ESC",
+      qty: 1
+    }
+  ],
+  photoUrl: String,
+  prices: [
+    {
+      url: String,
+      price: String
+    },
+    {
+      url: "thisWillBeTheActiveLinkOnAllIncludedComponents.com",
+      price: "thisWillBeComparedAndOnlyTheLowestWillShowWithItsAssociatedURL.99"
+    }
+  ]
+}
 
 ### Batteries
-//TODO
+name: String,
+type: "battery",
+data: {
+  voltage: String (e.g. "3S"),
+  capacity: String (e.g. "2200mAh"),
+  connector: String (e.g. "IC3"),
+  c_rating: String (e/g/ 30C)
+},
+photoUrl: String,
+prices: [same as above]
 
 ### ESC's
-//TODO
+name: String,
+type: "esc",
+data: {
+  battery: String range (e.g. "2s-4s"),
+  connector: String (e.g. "IC3")
+}
+photoUrl: String,
+prices: [same as above]
 
 ### FC's
 //TODO
@@ -46,13 +91,29 @@ An add-part modal to populate the database is the next construction item. Until 
 //TODO
 
 ### Receivers
-//TODO
+name: String,
+type: "receiver",
+data: {
+  protocol: String separated by commas (e.g. "DSM2, DSMX"),
+  channels: Number,
+  weight: String(opt),
+  dimensions: String separated by x (e.g. "15mm x 49mm x 30mm")(opt)
+},
+photoUrl: String,
+prices: [same as above]
 
 ### Servos
 //TODO
 
 ### Transmitters
-//TODO
+name: String,
+type: "transmitter",
+data: {
+  protocol: String(currently only "DSMX", "CRSF", and "ACCESS" are supported in the validator),
+  channels: Number
+},
+photoUrl: String,
+prices: [same as above]
 
 
 ## Tech Stack
