@@ -1,7 +1,7 @@
 # RC Part Picker (working title)
 
 ## Getting Started:
-1. Clone repo.
+1. Clone repo
 ```
 git clone https://github.com/BenTracyDotCom/RCPartPicker
 ```
@@ -14,11 +14,11 @@ git clone https://github.com/BenTracyDotCom/RCPartPicker
 ```
 npm install
 ```
-5. Start server.
+5. Start server
 ```
 npm run server
 ```
-6. Start dev client.
+6. Start dev client
 ```
 npm run dev
 ```
@@ -58,19 +58,12 @@ An add-part modal to populate the database is the next construction item. Until 
 ## Tech Stack
 
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
-
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
-
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-
 ![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)
-
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
-
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
-
 ![Axios](https://img.shields.io/badge/-Axios-671ddf?logo=axios&logoColor=black&style=for-the-badge)
-
 ![Express](https://img.shields.io/badge/-Express-DCDCDC?logo=express&logoColor=black&style=for-the-badge)
 
 ## TODO:
