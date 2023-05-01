@@ -8,9 +8,9 @@ git clone https://github.com/BenTracyDotCom/RCPartPicker
 2. If you haven't got MongoDB installed, you'll need to set up a local instance. This project is currently only configured to work on a local MongoDB instance.
  - https://www.mongodb.com/docs/manual/tutorial/getting-started/
  - I highly recommend installing MongoDB Compass to manage data
-3. Environment variables.
+3. Environment variables
  - Copy example.env to its own file called simply ".env".
-4. Install dependencies.
+4. Install dependencies
 ```
 npm install
 ```
@@ -24,10 +24,11 @@ npm run dev
 ```
 7. Look for ToDos and mind the linter! She'll let you know if you're about to break something.
 
-## DB Parts Schema
+## Parts Schema
 An add-part modal to populate the database is the next construction item. Until then, you'll have to find an inelegant way to get parts into the database according to the following schema:
 
 ### Airframes
+```
 name: String,
 type: "airframe",
 data: {
@@ -58,8 +59,9 @@ data: {
     }
   ]
 }
-
+```
 ### Batteries
+```
 name: String,
 type: "battery",
 data: {
@@ -70,8 +72,9 @@ data: {
 },
 photoUrl: String,
 prices: [same as above]
-
+```
 ### ESC's
+```
 name: String,
 type: "esc",
 data: {
@@ -80,17 +83,21 @@ data: {
 }
 photoUrl: String,
 prices: [same as above]
-
+```
 ### FC's
+```
 //TODO
-
+```
 ### Motors
+```
 //TODO
-
+```
 ### Propellers
+```
 //TODO
-
+```
 ### Receivers
+```
 name: String,
 type: "receiver",
 data: {
@@ -101,11 +108,13 @@ data: {
 },
 photoUrl: String,
 prices: [same as above]
-
+```
 ### Servos
+```
 //TODO
-
+```
 ### Transmitters
+```
 name: String,
 type: "transmitter",
 data: {
@@ -114,7 +123,7 @@ data: {
 },
 photoUrl: String,
 prices: [same as above]
-
+```
 
 ## Tech Stack
 
