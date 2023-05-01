@@ -1,4 +1,4 @@
-# RC Part Picker (working title)
+# RC Part Picker
 
 ## Getting Started:
 1. Clone repo
