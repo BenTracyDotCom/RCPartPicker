@@ -48,7 +48,7 @@ const Banner = (props: { user: String, setBuilds: Function, builds: { name: Stri
 
   return (
     <div className="bg-blue-900 mt-0 flex items-center justify-between">
-      <h1 className="text-amber-400 font-mono font-bold pl-5">RC Part Picker</h1>
+      <h1 className="text-amber-400 text-4xl w-full font-mono font-bold pl-5">RC Part Picker</h1>
       <div className="w-10/12 h-min py-y flex justify-end">
         <span className="text-amber-400 cursor-pointer hover:text-green-300" onClick={handleLogin}>{!!props.user ? 'logout  |  ' : 'login  |  '}</span>
         {!props.user && <span className="text-amber-400 ml-2 cursor-pointer hover:text-green-300" onClick={handleRegister}> register</span>}

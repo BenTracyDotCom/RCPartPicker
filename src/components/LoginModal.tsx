@@ -43,7 +43,7 @@ const LoginModal = (props: { setUser: Function, setBuilds: Function, }) => {
           </label>
           <label className="input-group mt-5">
             <span>Password</span>
-            <input type="text" className="input input-bordered w-full" onChange={handlePassword}/>
+            <input type="password" className="input input-bordered w-full" onChange={handlePassword}/>
           </label>
           <div className="modal-action">
             <button className="btn" onClick={handleSubmit}>Submit</button>
