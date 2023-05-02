@@ -1,5 +1,18 @@
 # RC Part Picker
 
+### Build Page:
+
+![Build Page](https://imgur.com/tqGCIXc)
+![Build Page 2](https://imgur.com/UaESxkd)
+
+### Add parts:
+
+![Add Parts Example](https://imgur.com/yl51NVr)
+
+### Part validation:
+
+![Part Validation Example](https://imgur.com/UaESxkd)
+
 ## Getting Started:
 1. Clone repo
 ```
