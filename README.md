@@ -2,16 +2,20 @@
 
 ### Build Page:
 
-![Build Page](https://imgur.com/tqGCIXc)
-![Build Page 2](https://imgur.com/UaESxkd)
+![Imgur](https://i.imgur.com/tqGCIXc.jpg)
+![Imgur](https://i.imgur.com/pOD6PPC.jpg)
 
 ### Add parts:
 
-![Add Parts Example](https://imgur.com/yl51NVr)
+![Imgur](https://i.imgur.com/yl51NVr.jpg)
 
 ### Part validation:
 
-![Part Validation Example](https://imgur.com/UaESxkd)
+![Imgur](https://i.imgur.com/UaESxkd.jpg)
+
+### Part list:
+
+![Imgur](https://i.imgur.com/M5O8BYA.jpg)
 
 ## Getting Started:
 1. Clone repo
