@@ -1,23 +1,23 @@
 # RC Part Picker
 
-### Build Page:
+### Build Page
 
 ![Imgur](https://i.imgur.com/tqGCIXc.jpg)
 ![Imgur](https://i.imgur.com/pOD6PPC.jpg)
 
-### Add parts:
+### Add parts
 
 ![Imgur](https://i.imgur.com/yl51NVr.jpg)
 
-### Part validation:
+### Part validation
 
 ![Imgur](https://i.imgur.com/UaESxkd.jpg)
 
-### Part list:
+### Part list
 
 ![Imgur](https://i.imgur.com/M5O8BYA.jpg)
 
-## Getting Started:
+## Getting Started
 1. Clone repo
 ```
 git clone https://github.com/BenTracyDotCom/RCPartPicker
