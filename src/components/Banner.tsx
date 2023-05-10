@@ -60,7 +60,7 @@ const Banner = (props: { user: String, setBuilds: Function, builds: { name: Stri
         {props.builds.map(build => (<option>{build.name}</option>))}
         <option>+ New Build</option>
       </select>
-      {props.user === "admin" && <div onClick={handleAddPart}>Add Part(s)</div>}
+      {props.user === "Brengeley" && <div onClick={handleAddPart}>Add Part(s)</div>}
     </div>
   )
 }

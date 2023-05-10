@@ -3,7 +3,7 @@ import addPart from '../api/api'
 
 const AddPartModal = (props: Object) => {
 
-  const [types, setTypes] = useState([])
+  const [types, setTypes] = useState(['Airframe', 'Battery', 'ESC', 'FC', 'Motor', 'Propeller', 'Receiver', 'Servo', 'Transmitter',])
 
   const [form, setForm] = useState({
     name: "",
@@ -17,12 +17,16 @@ const AddPartModal = (props: Object) => {
     setForm({ ...form, name: e.currentTarget.value })
   }
 
-  const handleType = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setForm({ ...form, type: e.currentTarget.value })
+  const handleType = (e: React.MouseEvent<HTMLOptionElement>) => {
+    setForm({ ...form, type: e.currentTarget.value.toLowerCase() })
   }
 
   const handleNewType = () => {
     console.log('new type new type')
+  }
+
+  const handlePhotoUrl = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm({ ...form, photoUrl: e.currentTarget.value})
   }
 
   const handlePrices = () => {
@@ -53,14 +57,16 @@ const AddPartModal = (props: Object) => {
             <select className="select select-bordered w-full mt-5">
               <option disabled selected>Pick category</option>
               {types.map(type => {
-                return <option>{type}</option>
+                return <option onClick={handleType}>{type}</option>
               })}
               <option onClick={handleNewType}>+ Add new category</option>
             </select>
           </div>
           <label className="input-group mt-5">
-              <span>Part Name</span>
-              <input type="text" className="input input-bordered w-full" onChange={handlePrices} />
+              <span>Photo URL</span>
+              <input type="text" className="input input-bordered w-full" onChange={handlePhotoUrl} />{form.photoUrl && <div className="h-10 w-20"><img src={form.photoUrl}></img>
+            </div>}
+
             </label>
           <div className="modal-action">
             <label htmlFor="add-part-modal" className="btn btn-primary">Cancel</label>
