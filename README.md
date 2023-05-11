@@ -87,7 +87,7 @@ data: {
   voltage: String (e.g. "3S"),
   capacity: String (e.g. "2200mAh"),
   connector: String (e.g. "IC3"),
-  c_rating: String (e/g/ 30C)
+  c_rating: String (e.g. "30C")
 },
 photoUrl: String,
 prices: [same as above]
